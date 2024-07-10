@@ -8,13 +8,13 @@ import { EditorState } from '@codemirror/state'
 import { cpp } from '@codemirror/lang-cpp';
 import { languageMap } from '@/utils';
 
-const CodeEditor = ({ code, setCode, language }) => {
+const CodeEditor = ({ code, defaultCode, setCode, language }) => {
     const [theme, setTheme] = useState(githubDark)
 
     return (
         <CodeMirror
-            value={code}
-            className='w-full h-[35rem] md:h-[40rem] '
+            value={defaultCode}
+            className='w-full h-[20rem] md:h-[43rem] '
             height='100%'
             theme={theme}
             extensions={[

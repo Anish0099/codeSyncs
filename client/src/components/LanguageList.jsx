@@ -17,26 +17,33 @@ import { python } from '@codemirror/lang-python'
 import { languageMap } from '@/utils'
 
 
-const LanguageList = ({ language, setLanguage, setLanguageId, languageId, setCode }) => {
+const LanguageList = ({ language, problem, defaultCode, setDefaultCode, setLanguage, setLanguageId, languageId, setCode }) => {
 
     useEffect(() => {
-        console.log(language.language.name)
+        console.log(language.language.name);
+        console.log(problem);
 
-        if (language.language.name === 'javascript') {
-            setLanguageId(63);
-            setCode(languageMap['javascript'].defaultCode)
-        } else if (language.language.name === 'cpp') {
-            setLanguageId(54);
-            setCode(languageMap['cpp'].defaultCode)
-        } else if (language.language.name === 'java') {
-            setLanguageId(62);
-            setCode(languageMap['java'].defaultCode)
-        } else if (language.language.name === 'python') {
-            setLanguageId(71);
-            setCode(languageMap['python'].defaultCode)
+        if (problem && problem.defaultCode) {
+            if (language.language.name === 'javascript') {
+                setLanguageId(63);
+                setCode(languageMap['javascript'].defaultCode);
+                setDefaultCode(problem.defaultCode['javascript']);
+            } else if (language.language.name === 'cpp') {
+                setLanguageId(54);
+                setCode(languageMap['cpp'].defaultCode);
+                setDefaultCode(problem.defaultCode['cpp']);
+            } else if (language.language.name === 'java') {
+                setLanguageId(26);
+                setCode(languageMap['java'].defaultCode);
+                setDefaultCode(problem.defaultCode['java']);
+            } else if (language.language.name === 'python') {
+                setLanguageId(71);
+                setCode(languageMap['python'].defaultCode);
+                setDefaultCode(problem.defaultCode['python']);
+            }
         }
-        console.log(languageId)
-    }, [language])
+        console.log(languageId);
+    }, [language, problem]);
     return (
         <div>
             <DropdownMenu>
